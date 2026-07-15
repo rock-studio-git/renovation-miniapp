@@ -1,12 +1,15 @@
 # 依赖与构建产物
 node_modules/
-miniprogram/miniprogram_npm/
-miniprogram_npm/
 package-lock.json
 
 # 微信开发者工具编译生成
 *.js.map
-miniprogram/**/*.js
+miniprogram/pages/**/*.js
+miniprogram/components/**/*.js
+miniprogram/stores/**/*.js
+miniprogram/utils/**/*.js
+miniprogram/types/**/*.js
+miniprogram/app.js
 
 # 本地配置
 .project
