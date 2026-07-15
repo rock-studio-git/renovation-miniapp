@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的项目",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "empty-state": "/components/empty-state/empty-state",
+    "confirm-dialog": "/components/confirm-dialog/confirm-dialog",
+    "progress-bar": "/components/progress-bar/progress-bar",
+    "risk-badge": "/components/risk-badge/risk-badge"
+  }
+}

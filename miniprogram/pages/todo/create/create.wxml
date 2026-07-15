@@ -1,0 +1,43 @@
+<view class="page-container">
+  <view class="form-card">
+    <view class="form-row">
+      <text class="form-label">待办内容<text class="req">*</text></text>
+      <input class="form-input" placeholder="如：确认水电验收" value="{{title}}" bindinput="onTitleInput" />
+    </view>
+    <view wx:if="{{errors.title}}" class="form-err">{{errors.title}}</view>
+
+    <view class="form-row">
+      <text class="form-label">所属阶段</text>
+      <picker mode="selector" range="{{stageOptions}}" value="{{stageIndex}}" bindchange="onStageChange">
+        <view class="form-picker">{{stageOptions[stageIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">截止日期</text>
+      <picker mode="date" value="{{dueDate}}" bindchange="onDueChange">
+        <view class="form-picker">{{dueDate || '选填'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-row form-row-col">
+      <text class="form-label">优先级</text>
+      <t-radio-group value="{{priority}}" bind:change="onPriorityChange">
+        <t-radio
+          wx:for="{{priorityOptions}}"
+          wx:for-item="opt"
+          wx:key="value"
+          value="{{opt.value}}"
+          label="{{opt.label}}"
+        />
+      </t-radio-group>
+    </view>
+
+    <view class="form-row form-row-col">
+      <text class="form-label">备注</text>
+      <textarea class="form-textarea" placeholder="选填" value="{{note}}" bindinput="onNoteInput" />
+    </view>
+  </view>
+
+  <t-button theme="primary" block bindtap="onSubmit">保存待办</t-button>
+</view>

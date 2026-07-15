@@ -1,0 +1,71 @@
+<view class="page" wx:if="{{hasProject}}">
+  <view class="form-card">
+    <view class="form-field">
+      <text class="form-label">名称<text class="req">*</text></text>
+      <input class="form-input" placeholder="如：瓷砖采购" value="{{name}}" bindinput="onName" />
+      <view wx:if="{{errors.name}}" class="err">{{errors.name}}</view>
+    </view>
+
+    <view class="form-field">
+      <text class="form-label">预算分类<text class="req">*</text></text>
+      <picker mode="selector" range="{{categoryNames}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+        <view class="picker-value">{{categoryNames[categoryIndex] || '请选择'}}</view>
+      </picker>
+      <view wx:if="{{errors.categoryId}}" class="err">{{errors.categoryId}}</view>
+    </view>
+
+    <view class="form-field">
+      <text class="form-label">所属阶段</text>
+      <picker mode="selector" range="{{stageNames}}" value="{{stageIndex}}" bindchange="onStageChange">
+        <view class="picker-value">{{stageNames[stageIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-field">
+      <text class="form-label">金额<text class="req">*</text></text>
+      <input class="form-input" type="digit" placeholder="0.00" value="{{amount}}" bindinput="onAmount" />
+      <view wx:if="{{errors.amount}}" class="err">{{errors.amount}}</view>
+    </view>
+
+    <view class="form-field">
+      <text class="form-label">支出日期<text class="req">*</text></text>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="picker-value">{{date}}</view>
+      </picker>
+      <view wx:if="{{errors.expenseDate}}" class="err">{{errors.expenseDate}}</view>
+    </view>
+
+    <view class="form-field">
+      <text class="form-label">付款状态</text>
+      <t-radio-group value="{{paymentStatus}}" bind:change="onPaymentChange">
+        <t-radio value="paid" label="已付款" />
+        <t-radio value="unpaid" label="未付款" />
+      </t-radio-group>
+    </view>
+
+    <view class="form-field">
+      <text class="form-label">收款方</text>
+      <input class="form-input" placeholder="选填" value="{{payee}}" bindinput="onPayee" />
+    </view>
+
+    <view class="form-field">
+      <text class="form-label">备注</text>
+      <textarea class="form-textarea" placeholder="选填" value="{{note}}" bindinput="onNote" />
+    </view>
+  </view>
+
+  <view class="btn-row">
+    <t-button theme="primary" block bindtap="onSubmit">保存</t-button>
+    <t-button theme="danger" block bindtap="onDelete">删除</t-button>
+  </view>
+
+  <confirm-dialog
+    visible="{{showDeleteDialog}}"
+    title="删除支出"
+    message="删除后该支出记录将无法恢复。"
+    confirmText="删除"
+    danger
+    bind:confirm="onConfirmDelete"
+    bind:cancel="onCancelDelete"
+  />
+</view>

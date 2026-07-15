@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/project/list/list",
+    "pages/project/create/create",
+    "pages/project/detail/detail",
+    "pages/project/edit/edit",
+    "pages/budget/overview/overview",
+    "pages/budget/category-list/category-list",
+    "pages/budget/expense-list/expense-list",
+    "pages/budget/expense-create/expense-create",
+    "pages/budget/expense-edit/expense-edit",
+    "pages/todo/list/list",
+    "pages/todo/create/create",
+    "pages/todo/edit/edit"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "装修管家",
+    "backgroundColor": "#f5f5f5",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#9ca3af",
+    "selectedColor": "#07c160",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/home/home", "text": "首页" },
+      { "pagePath": "pages/project/list/list", "text": "项目" },
+      { "pagePath": "pages/budget/overview/overview", "text": "预算" },
+      { "pagePath": "pages/todo/list/list", "text": "待办" }
+    ]
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

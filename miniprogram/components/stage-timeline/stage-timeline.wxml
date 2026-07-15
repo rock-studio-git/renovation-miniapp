@@ -1,0 +1,19 @@
+<view class="timeline">
+  <view
+    wx:for="{{stages}}"
+    wx:key="id"
+    class="timeline-item timeline-{{item.status}} {{selectable ? 'timeline-tap' : ''}}"
+    data-id="{{item.id}}"
+    bindtap="onTap"
+  >
+    <view class="timeline-dot">
+      <text wx:if="{{item.status === 'completed'}}" class="timeline-check">✓</text>
+    </view>
+    <view class="timeline-line" wx:if="{{index !== stages.length - 1}}"></view>
+    <view class="timeline-body">
+      <view class="timeline-name">{{item.name}}</view>
+      <view wx:if="{{item.note}}" class="timeline-note">{{item.note}}</view>
+    </view>
+    <view wx:if="{{item.status === 'in_progress'}}" class="timeline-flag">进行中</view>
+  </view>
+</view>

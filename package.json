@@ -1,0 +1,21 @@
+{
+  "name": "renovation-miniapp",
+  "version": "1.0.0",
+  "description": "装修管家 - 面向装修小白的预算与项目管理微信小程序（MVP）",
+  "miniprogramRoot": "miniprogram/",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "tdesign-miniprogram": "^1.15.0"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^5.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.1.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.0"
+  }
+}

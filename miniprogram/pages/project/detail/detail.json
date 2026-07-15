@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "项目详情",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "stage-timeline": "/components/stage-timeline/stage-timeline",
+    "money-display": "/components/money-display/money-display",
+    "progress-bar": "/components/progress-bar/progress-bar",
+    "risk-badge": "/components/risk-badge/risk-badge",
+    "confirm-dialog": "/components/confirm-dialog/confirm-dialog"
+  }
+}

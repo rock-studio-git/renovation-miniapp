@@ -1,0 +1,74 @@
+.page-container {
+  padding: 24rpx;
+}
+
+.form-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 8rpx 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f3f4f6;
+}
+
+.form-row:last-child {
+  border-bottom: none;
+}
+
+.form-row-col {
+  display: block;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #374151;
+  flex: 0 0 auto;
+  margin-right: 24rpx;
+}
+
+.form-label .req {
+  color: #ef4444;
+}
+
+.form-input {
+  flex: 1 1 auto;
+  text-align: right;
+  font-size: 28rpx;
+  color: #1f2937;
+}
+
+.form-picker {
+  flex: 1 1 auto;
+  text-align: right;
+  font-size: 28rpx;
+  color: #1f2937;
+}
+
+.form-textarea {
+  width: 100%;
+  margin-top: 16rpx;
+  min-height: 140rpx;
+  font-size: 28rpx;
+  color: #1f2937;
+  background: #f9fafb;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+}
+
+.form-err {
+  color: #ef4444;
+  font-size: 24rpx;
+  padding: 0 0 16rpx;
+}
+
+.mt-btn {
+  margin-top: 16rpx;
+}

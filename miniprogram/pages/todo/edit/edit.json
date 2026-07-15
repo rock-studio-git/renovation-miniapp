@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "编辑待办",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-radio-group": "tdesign-miniprogram/radio-group/radio-group",
+    "t-radio": "tdesign-miniprogram/radio/radio",
+    "confirm-dialog": "/components/confirm-dialog/confirm-dialog"
+  }
+}

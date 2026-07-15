@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "装修管家",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "empty-state": "/components/empty-state/empty-state",
+    "money-display": "/components/money-display/money-display",
+    "progress-bar": "/components/progress-bar/progress-bar",
+    "risk-badge": "/components/risk-badge/risk-badge"
+  }
+}

@@ -1,0 +1,48 @@
+.form-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 8rpx 28rpx;
+  margin-bottom: 24rpx;
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  min-height: 96rpx;
+  border-bottom: 1rpx solid var(--border-color);
+}
+.form-row:last-child {
+  border-bottom: none;
+}
+.form-label {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+.req {
+  color: var(--danger-color);
+}
+.form-input {
+  flex: 1;
+  font-size: 28rpx;
+  text-align: right;
+  color: var(--text-primary);
+}
+.form-picker {
+  flex: 1;
+  font-size: 28rpx;
+  text-align: right;
+  color: var(--text-primary);
+}
+.form-err {
+  font-size: 24rpx;
+  color: var(--danger-color);
+  padding: 8rpx 0 4rpx;
+  text-align: right;
+}
+.tip {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+  text-align: center;
+  margin-top: 16rpx;
+}

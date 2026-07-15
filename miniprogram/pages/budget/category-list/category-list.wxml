@@ -1,0 +1,85 @@
+<view class="page">
+  <empty-state
+    wx:if="{{!hasProject}}"
+    icon="💰"
+    title="还没有选择项目"
+    desc="请先创建项目，再管理预算分类"
+    actionText="去创建项目"
+    showAction
+    bind:action="goCreateProject"
+  />
+
+  <block wx:else>
+    <view class="add-bar">
+      <t-button wx:if="{{!showAddForm}}" theme="primary" size="small" bindtap="toggleAdd">+ 添加分类</t-button>
+    </view>
+
+    <!-- 添加表单 -->
+    <view wx:if="{{showAddForm}}" class="form-card">
+      <view class="form-field">
+        <text class="form-label">分类名称</text>
+        <input class="form-input" placeholder="如：硬装 / 软装" value="{{addName}}" bindinput="onAddName" />
+      </view>
+      <view class="form-field">
+        <text class="form-label">预算金额</text>
+        <input class="form-input" type="digit" placeholder="0.00" value="{{addBudget}}" bindinput="onAddBudget" />
+      </view>
+      <view class="form-actions">
+        <t-button theme="primary" size="small" bindtap="saveAdd">保存</t-button>
+        <t-button theme="default" size="small" bindtap="cancelAdd">取消</t-button>
+      </view>
+    </view>
+
+    <view wx:if="{{categories.length === 0}}" class="empty-tip">暂无分类，点击上方添加</view>
+
+    <view wx:for="{{categories}}" wx:key="categoryId" class="cat-card">
+      <!-- 展示态 -->
+      <block wx:if="{{item.categoryId !== editingId}}">
+        <view class="cat-row">
+          <view class="cat-head">
+            <text class="cat-name">{{item.name}}</text>
+            <risk-badge level="{{item.riskLevel}}" text="{{item.riskText}}" />
+          </view>
+          <view class="cat-money">
+            <text class="cat-money-label">预算</text>
+            <money-display value="{{item.budgetAmount}}" size="sm" />
+            <text class="cat-money-label">已用</text>
+            <money-display value="{{item.usedAmount}}" size="sm" color="#ee0a24" />
+          </view>
+          <progress-bar percent="{{item.usageRate}}" color="{{item.progressColor}}" />
+          <text class="cat-usage-num">{{item.usageRate}}%</text>
+        </view>
+        <view class="cat-ops">
+          <text class="op-edit" catchtap="onEdit" data-id="{{item.categoryId}}">编辑</text>
+          <text class="op-del" catchtap="onDelete" data-id="{{item.categoryId}}">删除</text>
+        </view>
+      </block>
+
+      <!-- 编辑态 -->
+      <block wx:else>
+        <view class="form-field">
+          <text class="form-label">分类名称</text>
+          <input class="form-input" value="{{editName}}" bindinput="onEditName" />
+        </view>
+        <view class="form-field">
+          <text class="form-label">预算金额</text>
+          <input class="form-input" type="digit" value="{{editBudget}}" bindinput="onEditBudget" />
+        </view>
+        <view class="form-actions">
+          <t-button theme="primary" size="small" bindtap="saveEdit">保存</t-button>
+          <t-button theme="default" size="small" bindtap="cancelEdit">取消</t-button>
+        </view>
+      </block>
+    </view>
+
+    <confirm-dialog
+      visible="{{showDeleteDialog}}"
+      title="删除分类"
+      message="删除后该分类将无法恢复。"
+      confirmText="删除"
+      danger
+      bind:confirm="onConfirmDelete"
+      bind:cancel="onCancelDelete"
+    />
+  </block>
+</view>

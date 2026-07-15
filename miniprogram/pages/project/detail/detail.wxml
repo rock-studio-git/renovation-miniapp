@@ -1,0 +1,93 @@
+<view class="page-container" wx:if="{{project}}">
+  <!-- 项目头部 -->
+  <view class="detail-header card">
+    <view class="dh-top">
+      <text class="dh-name">{{project.name}}</text>
+      <t-tag wx:if="{{isCurrent}}" theme="success" size="small">当前项目</t-tag>
+    </view>
+    <view class="dh-meta">
+      {{project.area}}㎡ · {{houseTypeLabel}} · {{decorationTypeLabel}}
+    </view>
+    <view class="dh-meta" wx:if="{{project.address}}">{{project.address}}</view>
+    <view class="dh-meta">开工：{{startDateLabel}}　计划完工：{{endDateLabel}}</view>
+  </view>
+
+  <!-- 阶段进度 -->
+  <view class="card">
+    <view class="section-title">装修阶段</view>
+    <view class="stage-progress">
+      <text>已完成 {{progress.completed}}/{{progress.total}}</text>
+      <progress-bar percent="{{progress.percent}}" />
+    </view>
+    <stage-timeline stages="{{stages}}" selectable bind:select="onSelectStage" />
+    <view class="stage-tip">点击未开始阶段可将其设为「进行中」</view>
+  </view>
+
+  <!-- 预算概览 -->
+  <view class="card" bindtap="goBudget">
+    <view class="section-title flex-between">
+      <text>预算概览</text>
+      <text class="link">查看 ›</text>
+    </view>
+    <view class="budget-row" wx:if="{{budget}}">
+      <view class="b-col">
+        <text class="b-label">总预算</text>
+        <money-display value="{{budget.totalBudget}}" size="sm" />
+      </view>
+      <view class="b-col">
+        <text class="b-label">已使用</text>
+        <money-display value="{{budget.paidExpense}}" size="sm" color="#07a24a" />
+      </view>
+      <view class="b-col">
+        <text class="b-label">剩余</text>
+        <money-display value="{{budget.remaining}}" size="sm" color="#d92c2c" />
+      </view>
+    </view>
+    <view class="budget-bar">
+      <progress-bar percent="{{budget.usageRate}}" color="{{budget.riskLevel === 'overspent' ? '#ee0a24' : (budget.riskLevel === 'warning' ? '#ff976a' : '#07c160')}}" />
+    </view>
+    <view class="budget-risk">
+      <risk-badge level="{{budgetRisk.level}}" text="{{budgetRisk.title}}" />
+      <text class="budget-usage">使用率 {{budget.usageRate}}%</text>
+    </view>
+  </view>
+
+  <!-- 待办概览 -->
+  <view class="card" bindtap="goTodo">
+    <view class="section-title flex-between">
+      <text>待办概览</text>
+      <text class="link">查看 ›</text>
+    </view>
+    <view class="todo-stats">
+      <view class="ts-col">
+        <text class="ts-num">{{todoStats.pending}}</text>
+        <text class="ts-label">待办</text>
+      </view>
+      <view class="ts-col">
+        <text class="ts-num">{{todoStats.overdue}}</text>
+        <text class="ts-label">逾期</text>
+      </view>
+      <view class="ts-col">
+        <text class="ts-num">{{todoStats.completed}}</text>
+        <text class="ts-label">已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作 -->
+  <view class="actions">
+    <t-button wx:if="{{!isCurrent}}" theme="default" block bindtap="setCurrent">设为当前项目</t-button>
+    <t-button theme="default" block bindtap="goEdit">编辑项目</t-button>
+    <t-button theme="default" block bindtap="onDelete">删除项目</t-button>
+  </view>
+
+  <confirm-dialog
+    visible="{{showDeleteDialog}}"
+    title="删除项目"
+    message="删除后该项目下的阶段、预算、支出与待办将一并清除，且不可恢复。"
+    confirmText="删除"
+    danger
+    bind:confirm="onConfirmDelete"
+    bind:cancel="onCancelDelete"
+  />
+</view>

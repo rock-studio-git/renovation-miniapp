@@ -1,0 +1,66 @@
+.timeline {
+  padding: 8rpx 0;
+}
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 28rpx;
+}
+.timeline-dot {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: #ebedf0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+  z-index: 2;
+}
+.timeline-check {
+  color: #fff;
+}
+.timeline-line {
+  position: absolute;
+  left: 17rpx;
+  top: 36rpx;
+  bottom: 0;
+  width: 2rpx;
+  background: var(--border-color);
+}
+.timeline-body {
+  flex: 1;
+}
+.timeline-name {
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+.timeline-note {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+  margin-top: 4rpx;
+}
+.timeline-flag {
+  font-size: 22rpx;
+  color: var(--primary-color);
+  background: var(--primary-color-light);
+  padding: 2rpx 12rpx;
+  border-radius: 999rpx;
+}
+.timeline-completed .timeline-dot {
+  background: var(--primary-color);
+}
+.timeline-in_progress .timeline-dot {
+  background: #1989fa;
+  box-shadow: 0 0 0 6rpx rgba(25, 137, 250, 0.15);
+}
+.timeline-tap.timeline-not_started:active {
+  opacity: 0.6;
+}
+.timeline-tap {
+  cursor: pointer;
+}

@@ -1,0 +1,55 @@
+<view class="page-container">
+  <view class="form-card">
+    <view class="form-row">
+      <text class="form-label">待办内容<text class="req">*</text></text>
+      <input class="form-input" placeholder="如：确认水电验收" value="{{title}}" bindinput="onTitleInput" />
+    </view>
+    <view wx:if="{{errors.title}}" class="form-err">{{errors.title}}</view>
+
+    <view class="form-row">
+      <text class="form-label">所属阶段</text>
+      <picker mode="selector" range="{{stageOptions}}" value="{{stageIndex}}" bindchange="onStageChange">
+        <view class="form-picker">{{stageOptions[stageIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">截止日期</text>
+      <picker mode="date" value="{{dueDate}}" bindchange="onDueChange">
+        <view class="form-picker">{{dueDate || '选填'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-row form-row-col">
+      <text class="form-label">优先级</text>
+      <t-radio-group value="{{priority}}" bind:change="onPriorityChange">
+        <t-radio
+          wx:for="{{priorityOptions}}"
+          wx:for-item="opt"
+          wx:key="value"
+          value="{{opt.value}}"
+          label="{{opt.label}}"
+        />
+      </t-radio-group>
+    </view>
+
+    <view class="form-row form-row-col">
+      <text class="form-label">备注</text>
+      <textarea class="form-textarea" placeholder="选填" value="{{note}}" bindinput="onNoteInput" />
+    </view>
+  </view>
+
+  <t-button theme="primary" block bindtap="onSave">保存修改</t-button>
+  <t-button theme="default" block bindtap="onToggle" class="mt-btn">{{toggleLabel}}</t-button>
+  <t-button theme="danger" block bindtap="onDelete" class="mt-btn">删除待办</t-button>
+
+  <confirm-dialog
+    visible="{{showDeleteDialog}}"
+    title="删除待办"
+    message="删除后该待办将不再显示，且不可恢复。"
+    confirmText="删除"
+    danger
+    bind:confirm="onConfirmDelete"
+    bind:cancel="onCancelDelete"
+  />
+</view>

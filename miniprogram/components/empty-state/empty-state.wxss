@@ -1,0 +1,36 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 40rpx;
+  text-align: center;
+}
+.empty-icon {
+  font-size: 88rpx;
+  line-height: 1;
+  margin-bottom: 24rpx;
+  opacity: 0.85;
+}
+.empty-title {
+  font-size: 30rpx;
+  color: var(--text-secondary);
+  margin-bottom: 12rpx;
+}
+.empty-desc {
+  font-size: 26rpx;
+  color: var(--text-placeholder);
+  margin-bottom: 28rpx;
+  max-width: 480rpx;
+}
+.empty-action {
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  padding: 0 40rpx;
+  margin: 0;
+}
+.empty-action::after {
+  border: none;
+}

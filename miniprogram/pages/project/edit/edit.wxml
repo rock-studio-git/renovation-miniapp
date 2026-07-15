@@ -1,0 +1,58 @@
+<view class="page-container">
+  <view class="form-card">
+    <view class="form-row">
+      <text class="form-label">项目名称<text class="req">*</text></text>
+      <input class="form-input" placeholder="如：温馨家·两居室装修" value="{{name}}" bindinput="onNameInput" />
+    </view>
+    <view wx:if="{{errors.name}}" class="form-err">{{errors.name}}</view>
+
+    <view class="form-row">
+      <text class="form-label">房屋类型</text>
+      <picker mode="selector" range="{{houseTypeOptions}}" value="{{houseTypeIndex}}" bindchange="onHouseChange">
+        <view class="form-picker">{{houseTypeOptions[houseTypeIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">装修方式</text>
+      <picker mode="selector" range="{{decorationTypeOptions}}" value="{{decorationTypeIndex}}" bindchange="onDecorationChange">
+        <view class="form-picker">{{decorationTypeOptions[decorationTypeIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">建筑面积<text class="req">*</text></text>
+      <input class="form-input" type="digit" placeholder="单位：㎡" value="{{area}}" bindinput="onAreaInput" />
+    </view>
+    <view wx:if="{{errors.area}}" class="form-err">{{errors.area}}</view>
+
+    <view class="form-row">
+      <text class="form-label">详细地址</text>
+      <input class="form-input" placeholder="选填" value="{{address}}" bindinput="onAddressInput" />
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">开工日期<text class="req">*</text></text>
+      <picker mode="date" value="{{startDate}}" bindchange="onStartChange">
+        <view class="form-picker">{{startDate || '请选择'}}</view>
+      </picker>
+    </view>
+    <view wx:if="{{errors.startDate}}" class="form-err">{{errors.startDate}}</view>
+
+    <view class="form-row">
+      <text class="form-label">计划完工</text>
+      <picker mode="date" value="{{plannedEndDate}}" bindchange="onEndChange">
+        <view class="form-picker">{{plannedEndDate || '选填'}}</view>
+      </picker>
+    </view>
+    <view wx:if="{{errors.plannedEndDate}}" class="form-err">{{errors.plannedEndDate}}</view>
+
+    <view class="form-row">
+      <text class="form-label">总预算<text class="req">*</text></text>
+      <input class="form-input" type="digit" placeholder="单位：元" value="{{totalBudget}}" bindinput="onBudgetInput" />
+    </view>
+    <view wx:if="{{errors.totalBudget}}" class="form-err">{{errors.totalBudget}}</view>
+  </view>
+
+  <t-button theme="primary" block bindtap="onSubmit">保存修改</t-button>
+</view>

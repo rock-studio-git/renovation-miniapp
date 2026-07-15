@@ -1,0 +1,151 @@
+.page {
+  padding: 24rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.proj-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 24rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.proj-picker-label {
+  font-size: 26rpx;
+  color: #9ca3af;
+}
+
+.proj-picker-value {
+  font-size: 30rpx;
+  color: #1f2329;
+  font-weight: 600;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 28rpx 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2329;
+  margin-bottom: 20rpx;
+}
+
+.budget-money-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.budget-money-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.budget-money-label {
+  font-size: 24rpx;
+  color: #9ca3af;
+  margin-bottom: 8rpx;
+}
+
+.budget-progress-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.budget-progress-row progress-bar {
+  flex: 1;
+}
+
+.budget-usage-num {
+  font-size: 26rpx;
+  color: #1f2329;
+  margin-left: 16rpx;
+  min-width: 80rpx;
+  text-align: right;
+}
+
+.budget-risk-row {
+  display: flex;
+  align-items: center;
+}
+
+.warn-tip {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #ee0a24;
+  background: #fef0f0;
+  border-radius: 8rpx;
+  padding: 12rpx 16rpx;
+}
+
+.cat-row {
+  padding: 20rpx 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.cat-row:first-child {
+  border-top: none;
+}
+
+.cat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.cat-name {
+  font-size: 28rpx;
+  color: #1f2329;
+  font-weight: 500;
+}
+
+.cat-money {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12rpx;
+}
+
+.cat-money-label {
+  font-size: 24rpx;
+  color: #9ca3af;
+  margin-right: 8rpx;
+}
+
+.cat-money money-display {
+  margin-right: 16rpx;
+}
+
+.cat-usage-num {
+  font-size: 24rpx;
+  color: #1f2329;
+  margin-left: 16rpx;
+}
+
+.empty-tip {
+  font-size: 26rpx;
+  color: #9ca3af;
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+.entry-row {
+  margin-top: 12rpx;
+}
+
+.entry-row t-button {
+  margin-bottom: 20rpx;
+}

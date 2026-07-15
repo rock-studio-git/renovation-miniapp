@@ -1,0 +1,48 @@
+<view class="page">
+  <empty-state
+    wx:if="{{!hasProject}}"
+    icon="🧾"
+    title="还没有选择项目"
+    desc="请先创建项目，再记录支出"
+    actionText="去创建项目"
+    showAction
+    bind:action="goCreate"
+  />
+
+  <block wx:else>
+    <view wx:if="{{expenses.length === 0}}" class="empty-tip">还没有支出记录</view>
+
+    <view
+      wx:for="{{expenses}}"
+      wx:key="id"
+      class="exp-card"
+      bindtap="goDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="exp-head">
+        <text class="exp-name">{{item.name}}</text>
+        <t-tag theme="{{item.paymentTheme}}" size="small">{{item.paymentStatusLabel}}</t-tag>
+      </view>
+      <view class="exp-meta">
+        <text class="exp-cat">{{item.categoryName}}</text>
+        <text class="exp-date">{{item.expenseDate}}</text>
+      </view>
+      <view class="exp-bottom">
+        <money-display value="{{item.amount}}" size="md" color="#ee0a24" />
+        <text class="exp-del" catchtap="onDelete" data-id="{{item.id}}">删除</text>
+      </view>
+    </view>
+
+    <t-button theme="primary" block class="add-btn" bindtap="goCreate">+ 记一笔</t-button>
+
+    <confirm-dialog
+      visible="{{showDeleteDialog}}"
+      title="删除支出"
+      message="删除后该支出记录将无法恢复。"
+      confirmText="删除"
+      danger
+      bind:confirm="onConfirmDelete"
+      bind:cancel="onCancelDelete"
+    />
+  </block>
+</view>

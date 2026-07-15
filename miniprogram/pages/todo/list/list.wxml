@@ -1,0 +1,63 @@
+<view class="page-container">
+  <!-- 无当前项目 -->
+  <empty-state
+    wx:if="{{!hasProject}}"
+    icon="📝"
+    title="还没有选择装修项目"
+    desc="请先创建一个装修项目，再管理你的待办事项"
+    actionText="去创建项目"
+    showAction
+    bind:action="goProject"
+  />
+
+  <!-- 空待办 -->
+  <empty-state
+    wx:elif="{{emptyAll}}"
+    icon="✅"
+    title="还没有待办"
+    desc="添加你的第一条装修待办，按时推进每个节点"
+    actionText="新建待办"
+    showAction
+    bind:action="goCreate"
+  />
+
+  <block wx:else>
+    <view class="group" wx:for="{{groups}}" wx:key="key" wx:for-item="group">
+      <view class="group-title">{{group.title}}</view>
+      <view
+        class="todo-card {{item.completed ? 'todo-done' : ''}}"
+        wx:for="{{group.items}}"
+        wx:for-item="item"
+        wx:key="id"
+        bindtap="onItemTap"
+        data-id="{{item.id}}"
+      >
+        <view class="todo-check {{item.completed ? 'checked' : ''}}" catchtap="onToggle" data-id="{{item.id}}">
+          <t-icon wx:if="{{item.completed}}" name="check" size="32rpx" color="#fff" />
+        </view>
+        <view class="todo-main">
+          <view class="todo-title">{{item.title}}</view>
+          <view class="todo-meta">
+            <t-tag theme="{{item.priorityTheme}}" size="small" variant="light">{{item.priorityLabel}}</t-tag>
+            <text class="todo-due {{item.dueOverdue ? 'due-over' : ''}}">{{item.dueLabel}}</text>
+          </view>
+        </view>
+        <view class="todo-del" catchtap="onDelete" data-id="{{item.id}}">
+          <t-icon name="delete" size="40rpx" />
+        </view>
+      </view>
+    </view>
+
+    <t-button theme="primary" block bindtap="goCreate" class="add-btn">+ 新建待办</t-button>
+  </block>
+
+  <confirm-dialog
+    visible="{{showDeleteDialog}}"
+    title="删除待办"
+    message="删除后该待办将不再显示，且不可恢复。"
+    confirmText="删除"
+    danger
+    bind:confirm="onConfirmDelete"
+    bind:cancel="onCancelDelete"
+  />
+</view>

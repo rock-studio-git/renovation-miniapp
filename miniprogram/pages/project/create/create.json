@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "创建项目",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button"
+  }
+}

@@ -1,0 +1,16 @@
+.money {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+.money-sm {
+  font-size: 24rpx;
+}
+.money-md {
+  font-size: 32rpx;
+}
+.money-lg {
+  font-size: 46rpx;
+}
+.money-bold {
+  font-weight: 600;
+}

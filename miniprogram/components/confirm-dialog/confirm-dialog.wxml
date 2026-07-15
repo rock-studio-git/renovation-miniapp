@@ -1,0 +1,13 @@
+<view wx:if="{{visible}}" class="dialog-mask" catchtap="onCancel">
+  <view class="dialog" catchtap="stop">
+    <view class="dialog-title">{{title}}</view>
+    <view class="dialog-message" wx:if="{{message}}">{{message}}</view>
+    <view class="dialog-actions">
+      <view class="dialog-btn dialog-cancel" bindtap="onCancel">{{cancelText}}</view>
+      <view
+        class="dialog-btn dialog-confirm {{danger ? 'dialog-confirm-danger' : ''}}"
+        bindtap="onConfirm"
+      >{{confirmText}}</view>
+    </view>
+  </view>
+</view>

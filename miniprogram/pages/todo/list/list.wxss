@@ -1,0 +1,85 @@
+.page-container {
+  padding: 24rpx;
+}
+
+.group {
+  margin-bottom: 24rpx;
+}
+
+.group-title {
+  font-size: 26rpx;
+  color: #6b7280;
+  font-weight: 600;
+  margin: 8rpx 4rpx 12rpx;
+}
+
+.todo-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.todo-done .todo-title {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+.todo-check {
+  flex: 0 0 auto;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  border: 2rpx solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.todo-check.checked {
+  background: #07c160;
+  border-color: #07c160;
+}
+
+.todo-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.todo-title {
+  font-size: 30rpx;
+  color: #1f2937;
+  margin-bottom: 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todo-meta {
+  display: flex;
+  align-items: center;
+}
+
+.todo-due {
+  font-size: 24rpx;
+  color: #6b7280;
+  margin-left: 16rpx;
+}
+
+.todo-due.due-over {
+  color: #ef4444;
+}
+
+.todo-del {
+  flex: 0 0 auto;
+  padding: 8rpx 12rpx;
+  color: #9ca3af;
+}
+
+.add-btn {
+  margin-top: 8rpx;
+}

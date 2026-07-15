@@ -1,0 +1,86 @@
+<view class="page">
+  <!-- 无当前项目 -->
+  <empty-state
+    wx:if="{{!hasProject}}"
+    icon="💰"
+    title="还没有选择项目"
+    desc="请先创建或选择一个装修项目，再查看预算"
+    actionText="去创建项目"
+    showAction
+    bind:action="goCreateProject"
+  />
+
+  <block wx:else>
+    <!-- 当前项目选择器 -->
+    <view class="proj-picker">
+      <text class="proj-picker-label">当前项目</text>
+      <picker
+        wx:if="{{projectNames.length > 1}}"
+        mode="selector"
+        range="{{projectNames}}"
+        value="{{projectIndex}}"
+        bindchange="onProjectChange"
+      >
+        <view class="proj-picker-value">{{currentProjectName}} ▾</view>
+      </picker>
+      <text wx:else class="proj-picker-value">{{currentProjectName}}</text>
+    </view>
+
+    <!-- 预算卡片 -->
+    <view class="card budget-card">
+      <view class="card-title">预算总览</view>
+      <view class="budget-money-row">
+        <view class="budget-money-item">
+          <text class="budget-money-label">总预算</text>
+          <money-display value="{{totalBudget}}" size="lg" />
+        </view>
+        <view class="budget-money-item">
+          <text class="budget-money-label">已付款</text>
+          <money-display value="{{paidExpense}}" size="md" color="#ee0a24" />
+        </view>
+        <view class="budget-money-item">
+          <text class="budget-money-label">剩余</text>
+          <money-display value="{{remaining}}" size="md" color="#07c160" />
+        </view>
+      </view>
+
+      <view class="budget-progress-row">
+        <progress-bar percent="{{usageRate}}" color="{{progressColor}}" />
+        <text class="budget-usage-num">{{usageRate}}%</text>
+      </view>
+
+      <view class="budget-risk-row">
+        <risk-badge level="{{riskLevel}}" text="{{riskTitle}}" />
+      </view>
+
+      <view wx:if="{{commitmentExceeded}}" class="warn-tip">⚠️ 已确认支出可能导致超支</view>
+      <view wx:if="{{isOverflow}}" class="warn-tip">⚠️ 分类预算合计超过总预算</view>
+    </view>
+
+    <!-- 分类预算概览 -->
+    <view class="card">
+      <view class="card-title">分类预算概览</view>
+      <view wx:if="{{categories.length === 0}}" class="empty-tip">暂无分类，去「分类管理」添加</view>
+      <view wx:for="{{categories}}" wx:key="categoryId" class="cat-row">
+        <view class="cat-head">
+          <text class="cat-name">{{item.name}}</text>
+          <risk-badge level="{{item.riskLevel}}" text="{{item.riskText}}" />
+        </view>
+        <view class="cat-money">
+          <text class="cat-money-label">预算</text>
+          <money-display value="{{item.budgetAmount}}" size="sm" />
+          <text class="cat-money-label">已用</text>
+          <money-display value="{{item.usedAmount}}" size="sm" color="#ee0a24" />
+        </view>
+        <progress-bar percent="{{item.usageRate}}" color="{{item.progressColor}}" />
+        <text class="cat-usage-num">{{item.usageRate}}%</text>
+      </view>
+    </view>
+
+    <!-- 底部入口 -->
+    <view class="entry-row">
+      <t-button theme="primary" block bindtap="goCategoryList">分类管理</t-button>
+      <t-button theme="default" block bindtap="goExpenseList">支出明细</t-button>
+    </view>
+  </block>
+</view>

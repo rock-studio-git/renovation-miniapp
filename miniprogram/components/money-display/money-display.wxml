@@ -1,0 +1,1 @@
+<text class="money money-{{size}} {{bold ? 'money-bold' : ''}}" style="{{color ? 'color:' + color : ''}}">{{display}}</text>

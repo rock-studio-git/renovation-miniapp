@@ -1,0 +1,134 @@
+.home-empty {
+  padding-top: 60rpx;
+}
+.empty-btn {
+  margin-top: 24rpx;
+}
+.proj-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+.proj-name {
+  font-size: 34rpx;
+  font-weight: 600;
+}
+.proj-meta {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  margin-bottom: 16rpx;
+}
+.proj-stage {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 14rpx;
+}
+.stage-label {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+}
+.stage-name {
+  font-size: 28rpx;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.proj-progress {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.proj-percent {
+  font-size: 26rpx;
+  font-weight: 600;
+  width: 80rpx;
+  text-align: right;
+}
+.link {
+  font-size: 26rpx;
+  color: var(--primary-color);
+}
+.budget-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+.b-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+.b-label {
+  font-size: 22rpx;
+  color: var(--text-placeholder);
+}
+.budget-bar {
+  margin: 8rpx 0 12rpx;
+}
+.budget-risk {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.budget-usage {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+.todo-empty {
+  font-size: 26rpx;
+  color: var(--text-placeholder);
+  padding: 16rpx 0;
+}
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid var(--border-color);
+}
+.todo-item:last-child {
+  border-bottom: none;
+}
+.todo-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+  flex: 1;
+}
+.todo-title {
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+.todo-due {
+  font-size: 22rpx;
+  color: var(--text-placeholder);
+}
+.todo-due-over {
+  color: var(--danger-color);
+}
+.risk-card {
+  background: #fff7f7;
+}
+.risk-item {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 8rpx 0;
+  font-size: 26rpx;
+}
+.risk-dot {
+  font-size: 20rpx;
+}
+.risk-normal .risk-dot,
+.risk-normal .risk-text {
+  color: #07a24a;
+}
+.risk-warning .risk-dot,
+.risk-warning .risk-text {
+  color: #d9730a;
+}
+.risk-overspent .risk-dot,
+.risk-overspent .risk-text {
+  color: #d92c2c;
+}

@@ -1,0 +1,60 @@
+<view class="page-container">
+  <!-- 空状态 -->
+  <empty-state
+    wx:if="{{projects.length === 0}}"
+    icon="🏠"
+    title="还没有装修项目"
+    desc="创建你的第一个装修项目，开始管理预算与进度"
+    actionText="创建项目"
+    showAction
+    bind:action="goCreate"
+  />
+
+  <!-- 项目列表 -->
+  <block wx:else>
+    <view
+      class="proj-card"
+      wx:for="{{projects}}"
+      wx:key="id"
+      bindtap="goDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="proj-head">
+        <view class="proj-name-wrap">
+          <text class="proj-name">{{item.name}}</text>
+          <t-tag wx:if="{{item.isCurrent}}" theme="success" size="small">当前</t-tag>
+        </view>
+        <view class="proj-del" catchtap="onDelete" data-id="{{item.id}}">删除</view>
+      </view>
+
+      <view class="proj-meta">
+        {{item.area}}㎡ · {{item.decorationTypeLabel}}
+        <text wx:if="{{item.address}}"> · {{item.address}}</text>
+      </view>
+
+      <view class="proj-row">
+        <text class="proj-label">阶段进度</text>
+        <progress-bar percent="{{item.progressPercent}}" />
+        <text class="proj-num">{{item.progressPercent}}%</text>
+      </view>
+
+      <view class="proj-row">
+        <text class="proj-label">预算使用</text>
+        <text class="proj-num">{{item.budgetUsage}}%</text>
+        <risk-badge level="{{item.riskLevel}}" text="{{item.riskText}}" />
+      </view>
+    </view>
+
+    <t-button theme="primary" block bindtap="goCreate" class="add-btn">+ 新建项目</t-button>
+  </block>
+
+  <confirm-dialog
+    visible="{{showDeleteDialog}}"
+    title="删除项目"
+    message="删除后该项目下的阶段、预算、支出与待办将一并清除，且不可恢复。"
+    confirmText="删除"
+    danger
+    bind:confirm="onConfirmDelete"
+    bind:cancel="onCancelDelete"
+  />
+</view>

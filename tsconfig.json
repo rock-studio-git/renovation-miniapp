@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "target": "ES2017",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": ["ES2017"],
+    "types": ["miniprogram-api-typings"],
+    "esModuleInterop": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "baseUrl": "."
+  },
+  "include": ["miniprogram/**/*.ts", "miniprogram/app.d.ts", "tests/**/*.ts"],
+  "exclude": ["node_modules", "miniprogram/miniprogram_npm", "miniprogram_npm"]
+}

@@ -1,0 +1,91 @@
+<view class="page-container">
+  <!-- 空状态：尚未创建项目 -->
+  <view wx:if="{{!hasProject}}" class="home-empty">
+    <empty-state
+      icon="🏠"
+      title="欢迎使用装修管家"
+      desc="先创建一个装修项目，开始管理预算、阶段与待办"
+      actionText="创建第一个项目"
+      showAction
+      bind:action="goCreateProject"
+    />
+    <t-button theme="primary" block bindtap="goCreateProject" class="empty-btn">+ 创建项目</t-button>
+  </view>
+
+  <!-- 有项目：概览 -->
+  <block wx:else>
+    <!-- 项目卡片 -->
+    <view class="card proj" bindtap="goDetail">
+      <view class="proj-top">
+        <text class="proj-name">{{projectName}}</text>
+        <text class="link">详情 ›</text>
+      </view>
+      <view class="proj-meta">{{areaLabel}} · {{metaLabel}}</view>
+      <view class="proj-stage">
+        <text class="stage-label">当前阶段</text>
+        <text class="stage-name">{{stageText}}</text>
+      </view>
+      <view class="proj-progress">
+        <progress-bar percent="{{progressPercent}}" />
+        <text class="proj-percent">{{progressPercent}}%</text>
+      </view>
+    </view>
+
+    <!-- 预算卡片 -->
+    <view class="card" bindtap="goBudget">
+      <view class="section-title flex-between">
+        <text>预算概览</text>
+        <text class="link">管理 ›</text>
+      </view>
+      <view wx:if="{{budget}}" class="budget-grid">
+        <view class="b-col">
+          <text class="b-label">总预算</text>
+          <money-display value="{{budget.totalBudget}}" size="sm" />
+        </view>
+        <view class="b-col">
+          <text class="b-label">已使用</text>
+          <money-display value="{{budget.paidExpense}}" size="sm" color="#07a24a" />
+        </view>
+        <view class="b-col">
+          <text class="b-label">剩余</text>
+          <money-display value="{{budget.remaining}}" size="sm" color="#d92c2c" />
+        </view>
+      </view>
+      <view class="budget-bar" wx:if="{{budget}}">
+        <progress-bar percent="{{budget.usageRate}}" color="{{budget.barColor}}" />
+      </view>
+      <view class="budget-risk" wx:if="{{budget}}">
+        <risk-badge level="{{budget.riskLevel}}" text="{{budget.riskText}}" />
+        <text class="budget-usage">使用率 {{budget.usageRate}}%</text>
+      </view>
+    </view>
+
+    <!-- 待办卡片 -->
+    <view class="card" bindtap="goTodo">
+      <view class="section-title flex-between">
+        <text>待办</text>
+        <text class="link">全部 ›</text>
+      </view>
+      <view wx:if="{{todos.length === 0}}" class="todo-empty">暂无待办，去添加一条吧</view>
+      <view wx:for="{{todos}}" wx:key="id" class="todo-item">
+        <view class="todo-main">
+          <text class="todo-title">{{item.title}}</text>
+          <text class="todo-due {{item.overdue ? 'todo-due-over' : ''}}">{{item.dueLabel}}</text>
+        </view>
+        <t-tag
+          size="small"
+          theme="{{item.priority === 'high' ? 'danger' : (item.priority === 'medium' ? 'warning' : 'default')}}"
+        >{{item.priorityLabel}}</t-tag>
+      </view>
+    </view>
+
+    <!-- 风险聚合 -->
+    <view wx:if="{{hasRisk}}" class="card risk-card">
+      <view class="section-title">风险提醒</view>
+      <view wx:for="{{risks}}" wx:key="text" class="risk-item risk-{{item.level}}">
+        <text class="risk-dot">●</text>
+        <text class="risk-text">{{item.text}}</text>
+      </view>
+    </view>
+  </block>
+</view>

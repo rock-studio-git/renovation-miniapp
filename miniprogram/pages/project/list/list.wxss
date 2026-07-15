@@ -1,0 +1,56 @@
+.proj-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+.proj-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+.proj-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+.proj-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.proj-del {
+  font-size: 26rpx;
+  color: var(--danger-color);
+  padding: 6rpx 12rpx;
+}
+.proj-meta {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  margin-bottom: 20rpx;
+}
+.proj-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 14rpx;
+}
+.proj-label {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+  width: 110rpx;
+  flex-shrink: 0;
+}
+.proj-num {
+  font-size: 26rpx;
+  color: var(--text-primary);
+  font-weight: 600;
+  width: 80rpx;
+  text-align: right;
+  flex-shrink: 0;
+}
+.add-btn {
+  margin-top: 12rpx;
+}

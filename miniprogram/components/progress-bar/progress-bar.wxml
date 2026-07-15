@@ -1,0 +1,3 @@
+<view class="progress-track" style="height:{{height}}px;background:{{trackColor}}">
+  <view class="progress-fill" style="width:{{width}};background:{{color}}"></view>
+</view>

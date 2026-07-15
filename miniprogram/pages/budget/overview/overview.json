@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "预算总览",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "money-display": "/components/money-display/money-display",
+    "empty-state": "/components/empty-state/empty-state",
+    "progress-bar": "/components/progress-bar/progress-bar",
+    "risk-badge": "/components/risk-badge/risk-badge"
+  }
+}

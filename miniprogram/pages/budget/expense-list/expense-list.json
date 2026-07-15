@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "支出记录",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "money-display": "/components/money-display/money-display",
+    "empty-state": "/components/empty-state/empty-state",
+    "confirm-dialog": "/components/confirm-dialog/confirm-dialog"
+  }
+}
