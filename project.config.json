@@ -35,8 +35,8 @@
   "packNpmManually": false,
   "packNpmRelationList": [
     {
-      "packageJsonPath": "./package.json",
-      "miniprogramNpmDistDir": "./miniprogram/"
+      "packageJsonPath": "../package.json",
+      "miniprogramNpmDistDir": "./"
     }
   ]
 }
