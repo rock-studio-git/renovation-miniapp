@@ -32,10 +32,10 @@
     "ignoreDevUnusedFiles": true
   },
   "condition": {},
-  "packNpmManually": false,
+  "packNpmManually": true,
   "packNpmRelationList": [
     {
-      "packageJsonPath": "../package.json",
+      "packageJsonPath": "./package.json",
       "miniprogramNpmDistDir": "./"
     }
   ]
