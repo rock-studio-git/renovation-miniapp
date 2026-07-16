@@ -2,7 +2,7 @@
 
 面向装修小白的**预算与项目管理**工具。原生微信小程序 + TypeScript + TDesign，纯本地存储（MVP 无后端）。
 
-> 本仓库为源码仓库：`node_modules`、微信编译产物（`.js`、`.js.map`）、`package-lock.json` 均已通过 `.gitignore` 排除，克隆后需本地 `npm install` + 开发者工具「构建 npm」还原运行环境。
+> TDesign 组件构建产物（`miniprogram/miniprogram_npm/`）已直接提交在仓库中，克隆后无需再跑「构建 npm」步骤，开发者工具导入即可编译预览。
 
 ## 技术栈
 
@@ -10,10 +10,9 @@
 |------|------|
 | 开发方式 | 微信小程序原生开发（非 Taro / uni-app） |
 | 语言 | TypeScript（strict 模式，禁止 `any`） |
-| UI 组件库 | TDesign Miniprogram（`tdesign-miniprogram`） |
+| UI 组件库 | TDesign Miniprogram（构建产物已入库，无需手动构建 npm） |
 | 类型提示 | `miniprogram-api-typings` |
 | 数据存储 | 纯本地 Storage（`wx.getStorageSync` / `setStorageSync`） |
-| 包管理 | npm + 微信开发者工具「构建 npm」 |
 
 ## 目录结构
 
@@ -28,90 +27,78 @@ renovation-miniapp/
 │   ├── components/            # 6 个自定义基础组件
 │   ├── stores/                # 数据层：project / budget / todo store
 │   ├── types/                 # 类型定义
-│   └── utils/                 # 工具函数 + 纯函数计算引擎
+│   ├── utils/                 # 工具函数 + 纯函数计算引擎
+│   └── miniprogram_npm/       # TDesign 构建产物（已入库，无需手动构建）
 └── tests/                     # vitest 单元/集成测试
 ```
 
-## 一、克隆代码
+## 快速开始
 
-### 方式 A：HTTPS（推荐，无需配置 SSH）
+### 前置条件
+
+- **Node.js** 18+（含 npm）：`brew install node` 或从 [nodejs.org](https://nodejs.org) 下载 LTS 版
+- **微信开发者工具**：[下载稳定版](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)（Mac 按芯片选 `arm64` / `x64`）
+
+### 步骤
 
 ```bash
+# 1. 克隆
 git clone https://github.com/rock-studio-git/renovation-miniapp.git
-```
-
-克隆后进入目录并安装依赖：
-
-```bash
 cd renovation-miniapp
+
+# 2. 安装依赖（仅开发/测试需要，开发者工具编译不依赖此步）
 npm install
+
+# 3. 编译 TS → JS（首次必须，后续开发者工具可自动编译）
+npx tsc
 ```
 
-### 方式 B：SSH
+然后在微信开发者工具中：
 
-需先把**本地机器**的 SSH 公钥加入 GitHub 账户（`Settings → SSH and GPG keys`）：
+1. **导入项目** → 选**仓库根目录**（含 `project.config.json` 的文件夹，**不要**选 `miniprogram/` 子目录）
+2. **AppID** → 选 **「测试号」**（扫码授权即可本地预览）
+3. **编译** → 模拟器即可看到首页
 
-```bash
-git clone git@github.com:rock-studio-git/renovation-miniapp.git
-```
-
-> ⚠️ 注意：SSH 公钥是**按机器**登记的。沙箱里生成的钥匙只用于沙箱→GitHub 推送，和你本地克隆无关，本地需用自己的钥匙。
+> ⚠️ 不需要点「构建 npm」—— TDesign 构建产物已在仓库中。
 
 ### 含中文 / 空格 / 括号的路径（如 iCloud 目录）
 
-中文路径在 macOS 上**完全没问题**（原生 UTF-8）。真正要处理的是**空格和括号**，整段路径加英文双引号即可：
+中文路径在 macOS 上完全没问题（原生 UTF-8）。整段路径加英文双引号即可处理空格和括号：
 
 ```bash
 git clone https://github.com/rock-studio-git/renovation-miniapp.git \
-  "/Users/liufeipeng/iCloud云盘（归档）/工作文档/Inbox/Project/2026年/多人项目asis/renovation-miniapp"
+  "/path/with 中文和空格/renovation-miniapp"
 ```
 
-克隆后：
+## iCloud 云盘注意事项 ⚠️
 
-```bash
-cd "/Users/liufeipeng/iCloud云盘（归档）/工作文档/Inbox/Project/2026年/多人项目asis/renovation-miniapp"
-npm install
-```
-
-## 二、iCloud 云盘注意事项 ⚠️
-
-若项目放在 iCloud 云盘，且系统开启了 **「优化 Mac 存储空间」**，不常用文件会被挪到云端、只留占位符，微信开发者工具可能读不到导致编译异常。建议：
+若项目放在 iCloud 云盘且系统开了「优化 Mac 存储空间」，不常用文件会被挪到云端只留占位符，开发者工具可能读不到。建议：
 
 - 对该文件夹 **右键 → 始终保留在此 Mac 上**；
 - 或开发期放到本地非 iCloud 目录更稳妥。
 
-本项目依赖（tdesign-miniprogram / typescript / vitest）均为纯 JS，无原生编译，中文 / 空格路径下 `npm install` 不会有问题。
-
-## 三、微信开发者工具运行
-
-1. **下载安装**：[微信开发者工具稳定版](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)（Mac 按芯片选 `arm64` / `x64` 的 `.dmg`），首次打开用微信扫码登录。
-2. **导入项目**：选**仓库根目录**（即包含 `project.config.json` 的文件夹），**不要**选 `miniprogram/` 子目录，否则找不到配置与 npm 关系。
-3. **AppID**：保持 `touristappid`（游客模式，可本地预览，无需注册）；或点「测试号」自动生成。
-4. **TS 编译**：工具按 `tsconfig.json` 把 `.ts` **就地编译**成同目录 `.js`（也可在终端跑 `npx tsc` 手动生成）。
-5. **构建 npm（关键）**：顶部菜单「工具 → 构建 npm」，生成 `miniprogram/miniprogram_npm/`（TDesign 依赖所在）。若菜单灰掉，先到「详情 → 本地设置」勾选「启用 npm」。
-6. **预览**：点「编译」在模拟器查看；点「预览」生成二维码用手机微信扫码真机查看。
-
-### 常见排查
+## 常见排查
 
 | 现象 | 原因 / 处理 |
 |------|------------|
-| TDesign 组件找不到 / 页面空白 | 未「构建 npm」→ 重做上方第 5 步 |
-| 真机预览报错 | 确认 `project.config.json` 中 `"urlCheck": false`，且已构建 npm |
+| 页面 JS 文件找不到 | 未编译 TS → 跑 `npx tsc` 或在开发者工具「详情 → 本地设置」勾选「启用 TypeScript 编译」 |
+| 真机预览报错 | 确认 `project.config.json` 中 `"urlCheck": false` |
 | TS 报错想自查 | 终端跑 `npm run typecheck` |
+| npm 找不到 | 未装 Node.js → `brew install node` |
 
-> 发布限制：`touristappid` 仅能本地预览，不能上传发布。要发布需在 [微信公众平台](https://mp.weixin.qq.com/) 注册小程序，拿到自己的 AppID 替换 `project.config.json` 中的 `appid`。
+> 发布限制：测试号 AppID 仅能本地预览，不能上传发布。要发布需在 [微信公众平台](https://mp.weixin.qq.com/) 注册小程序，拿到自己的 AppID 替换 `project.config.json` 中的 `appid`。
 
-## 四、测试与质量门禁
+## 测试与质量门禁
 
 ```bash
-npm test            # vitest 单元/集成测试（预算计算、待办排序引擎等）
+npm test            # vitest 单元/集成测试（40 用例：预算计算、待办排序引擎等）
 npm run typecheck   # tsc 类型检查（strict 模式，0 错误为准）
 ```
 
 - 预算计算引擎（`utils/budget-calculator.ts`）与待办排序引擎（`utils/todo-sorter.ts`）均含单元测试，预警规则覆盖 80% / 100% 边界矩阵。
 - 代码提交前应确保 `tsc` 编译无错误。
 
-## 五、开发约定速览
+## 开发约定速览
 
 - 页面放 `miniprogram/pages/`，每个页面四件套：`.wxml` / `.ts` / `.wxss` / `.json`。
 - 数据层按实体拆分（`project-store` / `budget-store` / `todo-store`），类型定义在 `types/`。
